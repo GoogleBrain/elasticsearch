@@ -30,5 +30,8 @@ public class ElTest {
 		 */
 		//GetResponse response = client.prepareGet("twitter", "tweet", "1").get();
 		//System.out.println(response.getSource().get("postDate"));
+		
+		System.out.println(client);
+		client.close();
 	}
 }
