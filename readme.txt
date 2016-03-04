@@ -5,5 +5,11 @@ elasticsearch 版本为2.2.0
 
 
 TransportClient：轻量级的Client，使用Netty线程池，Socket连接到ES集群。本身不加入到集群，只作为请求的处理。
-
 Node Client：客户端节点本身也是ES节点，加入到集群，和其他ElasticSearch节点一样。频繁的开启和关闭这类Node Clients会在集群中产生“噪音”。
+
+
+QueryBuilders 
+   termQuery 查询模式:
+        1. 若value为汉字，则大部分情况下，只能为一个汉字；
+        2. 若value为英文，则是一个单词,小写.
+
