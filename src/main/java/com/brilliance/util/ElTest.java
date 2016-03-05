@@ -64,7 +64,7 @@ public class ElTest {
 		// srb.setFrom(0);
 		// srb.setSize(60);
 		//
-		srb.setQuery(QueryBuilders.termQuery("content", "中国"));
+		srb.setQuery(QueryBuilders.wildcardQuery("content","中立*国"));
 		// srb.setPostFilter(QueryBuilders.rangeQuery("age").from(20).to(50));
 		srb.setExplain(true);
 		srb.addHighlightedField("name");
