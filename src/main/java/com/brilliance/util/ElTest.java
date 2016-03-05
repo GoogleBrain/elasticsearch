@@ -10,6 +10,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.*;
@@ -53,27 +54,27 @@ public class ElTest {
 		// "huzaibin")) // Query
 		// .setExplain(true).execute().actionGet();
 
-		SearchRequestBuilder srb = client.prepareSearch("student");
-		srb.setTypes("huzaibin");
+		SearchRequestBuilder srb = client.prepareSearch("index");
+		srb.setTypes("fulltext");
 		srb.setSearchType(SearchType.DFS_QUERY_THEN_FETCH);
 		// 查询所有的列
-		srb.setQuery(QueryBuilders.termQuery("_all", "龙"));
+		// srb.setQuery(QueryBuilders.termQuery("_all", "龙"));
 		// srb.setQuery(QueryBuilders.termQuery("name", "lucy"));
 		// srb.setQuery(QueryBuilders.termQuery("name", "龙"));
 		// srb.setFrom(0);
 		// srb.setSize(60);
 		//
-		srb.setPostFilter(QueryBuilders.rangeQuery("age").from(20).to(50));
+		srb.setQuery(QueryBuilders.termQuery("content", "中国"));
+		// srb.setPostFilter(QueryBuilders.rangeQuery("age").from(20).to(50));
 		srb.setExplain(true);
 		srb.addHighlightedField("name");
 		srb.setHighlighterPreTags("<span style=\"color:red\">");
 		srb.setHighlighterPostTags("</span>");
-		srb.addSort("age", SortOrder.ASC);
 		SearchResponse response = srb.execute().actionGet();
 		SearchHits shs = response.getHits();
 		for (SearchHit hit : shs) {
 			Map<String, Object> map = hit.getSource();
-			System.out.println(map.get("name") + " " + map.get("sex") + " " + map.get("age") + " " + map.get("address"));
+			System.out.println(map.get("content") + "  " + hit.getScore());
 		}
 		client.close();
 	}

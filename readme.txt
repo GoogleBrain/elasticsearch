@@ -36,3 +36,7 @@ DSF是什么缩写？初始化散发是一个什么样的过程？
 至于DFS是什么缩写，没有找到相关资料，这个D可能是Distributed，F可能是frequency的缩写，至于S可能是Scatter的缩写，整个单词可能是分布式词频率和文档频率散发的缩写。
 总结一下，从性能考虑QUERY_AND_FETCH是最快的，DFS_QUERY_THEN_FETCH是最慢的。从搜索的准确度来说，DFS要比非DFS的准确度更高。
 
+ik中文分词器的使用链接：https://github.com/medcl/elasticsearch-analysis-ik
+
+
+
